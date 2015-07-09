@@ -115,6 +115,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,6 +138,7 @@
     <Compile Include="Models\Coupon.cs">
       <DependentUpon>BetBitModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Objects\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,7 +159,6 @@
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
