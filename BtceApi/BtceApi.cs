@@ -25,12 +25,12 @@ namespace BtceApi
         }
     }
 
-    public class BtceApi
+    public class BtceApix
     {
         string key;
         HMACSHA512 hashMaker;
         UInt32 nonce;
-        public BtceApi(string key, string secret)
+        public BtceApix(string key, string secret)
         {
             this.key = key;
             hashMaker = new HMACSHA512(Encoding.ASCII.GetBytes(secret));
