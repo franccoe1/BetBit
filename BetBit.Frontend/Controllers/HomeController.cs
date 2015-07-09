@@ -13,6 +13,9 @@ namespace BetBit.Frontend.Controllers
         //
         // GET: /Home/
 
+        private const string key = "OWOKHELK-DI5J50DL-OJIKVH5K-LH4XBL7O-I8LRKJW6";
+        private const string secret = "e2a798864cca17b5159f316e4356566e9e1e23d7cca43a7826e46bf13d968d69";
+
         public ActionResult Index()
         {
             return View();
@@ -20,14 +23,14 @@ namespace BetBit.Frontend.Controllers
 
         public JsonResult Test()
         {
-            BtceApix btceApix = new BtceApix("OM0BU74S-GB21S7OL-FXLR96L8-RMB5BJ27-O34RJAJ3", "c1f3662a001cbbf88b970d30f88e3849c16a221b1711f0b7d0c5601d432531d9");
+            BtceApix btceApix = new BtceApix(key, secret);
 
             return Json(btceApix.GetInfo(), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult RedeemCoupon(string coupon)
         {
-            BtceApix btceApix = new BtceApix("OM0BU74S-GB21S7OL-FXLR96L8-RMB5BJ27-O34RJAJ3", "c1f3662a001cbbf88b970d30f88e3849c16a221b1711f0b7d0c5601d432531d9");
+            BtceApix btceApix = new BtceApix(key, secret);
             
             CouponResult couponResult = btceApix.RedeemCoupon(coupon);
             
@@ -40,6 +43,23 @@ namespace BetBit.Frontend.Controllers
                     CouponCode = coupon
                 });
             return Json(couponResult, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CreateCoupon(int amount)
+        {
+            BtceApix btceApix = new BtceApix(key, secret);
+
+            CouponCreate couponCreate = btceApix.CreateCoupon("EUR", amount);
+
+            BetBitEntities betBitEntities = new BetBitEntities();
+            AccountController accountController = new AccountController();
+            //betBitEntities.Coupon.Add(new Coupon()
+            //{
+            //    UserId = accountController.GetUser().UserId,
+            //    CouponAmount = couponResult.CouponAmount,
+            //    CouponCode = coupon
+            //});
+            return Json(couponCreate, JsonRequestBehavior.AllowGet);
         }
 
     }

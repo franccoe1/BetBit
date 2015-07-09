@@ -48,7 +48,6 @@ namespace BtceApi
             return UserInfo.ReadFromJObject(result["return"] as JObject);
         }
 
-
         public CouponResult RedeemCoupon(string coupon)
         {
             var args = new Dictionary<string, string>()
@@ -60,6 +59,20 @@ namespace BtceApi
             if (result.Value<int>("success") == 0)
                 throw new Exception(result.Value<string>("error"));
             return CouponResult.ReadFromJObject(result["return"] as JObject);
+        }
+
+        public CouponCreate CreateCoupon(string currency, int amount)
+        {
+            var args = new Dictionary<string, string>()
+            {
+                { "method", "CreateCoupon" }
+            };
+            args.Add("currency", currency);
+            args.Add("amount", amount.ToString());
+            var result = JObject.Parse(Query(args));
+            if (result.Value<int>("success") == 0)
+                throw new Exception(result.Value<string>("error"));
+            return CouponCreate.ReadFromJObject(result["return"] as JObject);
         }
 
         string Query(Dictionary<string, string> args)
