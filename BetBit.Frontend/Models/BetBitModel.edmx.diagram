@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4a94918ea6c64c66b8f86d3d5d856f3d" Name="Diagram1">
         <EntityTypeShape EntityType="BetBitModel.Coupon" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetBitModel.Users" Width="1.5" PointX="0.61871543555460662" PointY="24.972197961514908" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

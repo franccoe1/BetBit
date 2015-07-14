@@ -138,6 +138,9 @@
     <Compile Include="Models\Coupon.cs">
       <DependentUpon>BetBitModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>BetBitModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Objects\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

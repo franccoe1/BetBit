@@ -26,5 +26,6 @@ namespace BetBit.Frontend.Models
         }
     
         public DbSet<Coupon> Coupon { get; set; }
+        public DbSet<Users> Users { get; set; }
     }
 }
