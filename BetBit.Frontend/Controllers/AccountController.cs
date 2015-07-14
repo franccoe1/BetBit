@@ -13,7 +13,7 @@ namespace BetBit.Frontend.Controllers
         {
             User user = new User();
 
-            HttpCookie myCookie = new HttpCookie("BetBit");
+            HttpCookie myCookie = Request.Cookies["BetBit"];
             if (myCookie == null)
             {
 
@@ -31,7 +31,8 @@ namespace BetBit.Frontend.Controllers
 
                 user.UserId = Guid.NewGuid();
 
-                myCookie["BetBit"] = user.UserId.ToString();
+                myCookie = new HttpCookie("BetBit");
+                myCookie.Value = user.UserId.ToString();
                 //myCookie["Password"] = user.Password;
                 myCookie.Expires = DateTime.Now.AddYears(1);
                 Response.Cookies.Add(myCookie);
