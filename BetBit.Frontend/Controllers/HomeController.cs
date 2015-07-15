@@ -42,6 +42,7 @@ namespace BetBit.Frontend.Controllers
                     CouponAmount = couponResult.CouponAmount,
                     CouponCode = coupon
                 });
+            betBitEntities.SaveChanges();
             return Json(couponResult, JsonRequestBehavior.AllowGet);
         }
 
