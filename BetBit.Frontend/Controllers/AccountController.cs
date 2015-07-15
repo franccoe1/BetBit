@@ -11,12 +11,16 @@ namespace BetBit.Frontend.Controllers
 {
     public class AccountController : Controller
     {
-
         public User GetUser()
+        {
+            return GetUser(Request);
+        }
+
+        public User GetUser(HttpRequestBase request)
         {
             User user = new User();
 
-            HttpCookie myCookie = Request.Cookies["BetBit"];
+            HttpCookie myCookie = request.Cookies["BetBit"];
             if (myCookie == null)
             {
 

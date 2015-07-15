@@ -43,9 +43,10 @@ namespace BetBit.Frontend.Controllers
             AccountController accountController = new AccountController();
             betBitEntities.Coupon.Add(new Coupon()
                 {
-                    UserId = accountController.GetUser().UserId,
+                    UserId = accountController.GetUser(Request).UserId,
                     CouponAmount = couponResult.CouponAmount,
-                    CouponCode = coupon
+                    CouponCode = coupon,
+                    CreateDate = DateTime.Now
                 });
             betBitEntities.SaveChanges();
             return Json(couponResult, JsonRequestBehavior.AllowGet);
@@ -54,30 +55,53 @@ namespace BetBit.Frontend.Controllers
         //levantamento de Eres
         public JsonResult CreateCoupon(int amount)
         {
+            CouponCreate couponCreate = null;
+            AccountController accountController = new AccountController();
             BtceApix btceApix = new BtceApix(key, secret);
 
-            CouponCreate couponCreate = btceApix.CreateCoupon("EUR", amount);
-            try
+            var User = accountController.GetUser(Request);
+            if (User != null)
             {
-                if (couponCreate != null)
+                couponCreate = btceApix.CreateCoupon("EUR", amount);
+                try
                 {
-                    BetBitEntities betBitEntities = new BetBitEntities();
-                    AccountController accountController = new AccountController();
-                    betBitEntities.Coupon.Add(new Coupon()
+
+                    if (couponCreate != null)
                     {
-                        UserId = accountController.GetUser().UserId,
-                        CouponAmount = amount,
-                        CouponCode = couponCreate.Coupon,
-                        TransId = couponCreate.TransID
-                    });
-                    betBitEntities.SaveChanges();
+                        BetBitEntities betBitEntities = new BetBitEntities();
+                        betBitEntities.Coupon.Add(new Coupon()
+                        {
+                            UserId = User.UserId,
+                            CouponAmount = amount,
+                            CouponCode = couponCreate.Coupon,
+                            TransId = couponCreate.TransID,
+                            CreateDate = DateTime.Now
+                        });
+                        betBitEntities.SaveChanges();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                log.Debug("ola", ex);
+                catch (Exception ex)
+                {
+                    log.Debug("ola", ex);
+                }
+
             }
             return Json(couponCreate, JsonRequestBehavior.AllowGet);
+        }
+
+        public void teste()
+        {
+ 
+                        BetBitEntities betBitEntities = new BetBitEntities();
+                        betBitEntities.Coupon.Add(new Coupon()
+                        {
+                            UserId = Guid.NewGuid(),
+                            CouponAmount = 1,
+                            CouponCode = "",
+                            TransId = 1,
+                            CreateDate = DateTime.Now
+                        });
+                        betBitEntities.SaveChanges();
         }
 
     }

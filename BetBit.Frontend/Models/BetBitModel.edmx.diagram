@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4a94918ea6c64c66b8f86d3d5d856f3d" Name="Diagram1">
-        <EntityTypeShape EntityType="BetBitModel.Coupon" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BetBitModel.Users" Width="1.5" PointX="4.125" PointY="1.125" />
+        <EntityTypeShape EntityType="BetBitModel.Coupon" Width="1.5" PointX="1.375" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -25,7 +25,7 @@ namespace BetBit.Frontend.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Coupon> Coupon { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Coupon> Coupon { get; set; }
     }
 }

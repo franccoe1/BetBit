@@ -18,7 +18,7 @@
           <Property Name="CouponAmount" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="CouponCode" Type="varchar" Nullable="false" MaxLength="256" />
-          <Property Name="TransId" Type="int" />
+          <Property Name="TransId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -34,20 +34,9 @@
     <edmx:ConceptualModels>
       <Schema Namespace="BetBitModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BetBitEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Coupon" EntityType="BetBitModel.Coupon" />
           <EntitySet Name="Users" EntityType="BetBitModel.Users" />
+          <EntitySet Name="Coupon" EntityType="BetBitModel.Coupon" />
         </EntityContainer>
-        <EntityType Name="Coupon">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="CouponAmount" Type="Int32" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CouponCode" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
-          <Property Type="Int32" Name="TransId" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -57,29 +46,40 @@
           <Property Type="String" Name="Username" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Password" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="CouponAmount" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="CouponCode" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TransId" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BetBitModelStoreContainer" CdmEntityContainer="BetBitEntities">
-          <EntitySetMapping Name="Coupon">
-            <EntityTypeMapping TypeName="BetBitModel.Coupon">
-              <MappingFragment StoreEntitySet="Coupon">
-                <ScalarProperty Name="TransId" ColumnName="TransId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CouponAmount" ColumnName="CouponAmount" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BetBitModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coupon">
+            <EntityTypeMapping TypeName="BetBitModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CouponAmount" ColumnName="CouponAmount" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

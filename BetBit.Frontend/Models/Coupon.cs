@@ -19,6 +19,6 @@ namespace BetBit.Frontend.Models
         public int CouponAmount { get; set; }
         public System.DateTime CreateDate { get; set; }
         public string CouponCode { get; set; }
-        public Nullable<int> TransId { get; set; }
+        public int TransId { get; set; }
     }
 }
