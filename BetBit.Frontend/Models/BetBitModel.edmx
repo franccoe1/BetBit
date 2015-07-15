@@ -18,6 +18,7 @@
           <Property Name="CouponAmount" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="CouponCode" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="TransId" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -45,6 +46,7 @@
           <Property Name="CouponAmount" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CouponCode" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="TransId" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -64,6 +66,7 @@
           <EntitySetMapping Name="Coupon">
             <EntityTypeMapping TypeName="BetBitModel.Coupon">
               <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CouponAmount" ColumnName="CouponAmount" />

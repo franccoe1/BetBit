@@ -5,11 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using BetBit.Frontend.Models;
 using BtceApi;
+using log4net;
+using log4net.Config;
 
 namespace BetBit.Frontend.Controllers
 {
+
     public class HomeController : Controller
     {
+        private static log4net.ILog Log { get; set; }
+        ILog log = log4net.LogManager.GetLogger(typeof(HomeController));
         //
         // GET: /Home/
 
@@ -31,9 +36,9 @@ namespace BetBit.Frontend.Controllers
         public JsonResult RedeemCoupon(string coupon)
         {
             BtceApix btceApix = new BtceApix(key, secret);
-            
+
             CouponResult couponResult = btceApix.RedeemCoupon(coupon);
-            
+
             BetBitEntities betBitEntities = new BetBitEntities();
             AccountController accountController = new AccountController();
             betBitEntities.Coupon.Add(new Coupon()
@@ -46,20 +51,32 @@ namespace BetBit.Frontend.Controllers
             return Json(couponResult, JsonRequestBehavior.AllowGet);
         }
 
+        //levantamento de Eres
         public JsonResult CreateCoupon(int amount)
         {
             BtceApix btceApix = new BtceApix(key, secret);
 
             CouponCreate couponCreate = btceApix.CreateCoupon("EUR", amount);
-
-            BetBitEntities betBitEntities = new BetBitEntities();
-            AccountController accountController = new AccountController();
-            //betBitEntities.Coupon.Add(new Coupon()
-            //{
-            //    UserId = accountController.GetUser().UserId,
-            //    CouponAmount = couponResult.CouponAmount,
-            //    CouponCode = coupon
-            //});
+            try
+            {
+                if (couponCreate != null)
+                {
+                    BetBitEntities betBitEntities = new BetBitEntities();
+                    AccountController accountController = new AccountController();
+                    betBitEntities.Coupon.Add(new Coupon()
+                    {
+                        UserId = accountController.GetUser().UserId,
+                        CouponAmount = amount,
+                        CouponCode = couponCreate.Coupon,
+                        TransId = couponCreate.TransID
+                    });
+                    betBitEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Debug("ola", ex);
+            }
             return Json(couponCreate, JsonRequestBehavior.AllowGet);
         }
 

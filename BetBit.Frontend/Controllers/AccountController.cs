@@ -11,6 +11,7 @@ namespace BetBit.Frontend.Controllers
 {
     public class AccountController : Controller
     {
+
         public User GetUser()
         {
             User user = new User();
@@ -47,16 +48,35 @@ namespace BetBit.Frontend.Controllers
                     Password = user.Password
                 });
 
-                betBitEntities.GetValidationErrors();
                 betBitEntities.SaveChanges();
-
-
             }
             else
             {
                 user.UserId = new Guid(myCookie.Value);
             }
             return user;
+        }
+
+        public JsonResult UserLogin(string username, string password)
+        {
+            BetBitEntities betBitEntities = new BetBitEntities();
+            HttpCookie myCookie = Request.Cookies["BetBit"];
+            User user = new User();
+
+            var User = betBitEntities.Users.FirstOrDefault(i => i.Username.Equals(username) && i.Password.Equals(password));
+
+            if (User != null)
+            {
+                myCookie = new HttpCookie("BetBit");
+                myCookie.Value = User.UserId.ToString();
+                myCookie.Expires = DateTime.Now.AddYears(1);
+                Response.Cookies.Add(myCookie);
+
+                user.Username = User.Username;
+                user.Password = User.Password;
+                user.UserId = User.UserId.Value;
+            }
+            return Json(user, JsonRequestBehavior.AllowGet);
         }
 
     }
