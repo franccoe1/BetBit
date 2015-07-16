@@ -61,7 +61,12 @@ namespace BetBit.Frontend.Controllers
                 user.UserId = new Guid(myCookie.Value);
 
                 BetBitEntities betBitEntities = new BetBitEntities();
-                user.Balance = betBitEntities.Coupon.Where(i => i.UserId == user.UserId).Sum(i => i.CouponAmount);
+
+                Users userFromBD = betBitEntities.Users.FirstOrDefault(i => i.UserId.Value.Equals(user.UserId));
+                user.Username = userFromBD.Username;
+                user.Password = userFromBD.Password;
+
+                user.Balance = betBitEntities.Coupon.Where(i => i.UserId == user.UserId).Select(i => i.CouponAmount).DefaultIfEmpty(0).Sum();
 
             }
             return user;
