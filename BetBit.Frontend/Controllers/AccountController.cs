@@ -37,6 +37,7 @@ namespace BetBit.Frontend.Controllers
                               .ToArray());
 
                 user.UserId = Guid.NewGuid();
+                user.Balance = 0;
 
                 myCookie = new HttpCookie("BetBit");
                 myCookie.Value = user.UserId.ToString();
@@ -49,7 +50,9 @@ namespace BetBit.Frontend.Controllers
                 {
                     UserId = user.UserId,
                     Username = user.Username,
-                    Password = user.Password
+                    Password = user.Password,
+                    Balance = user.Balance
+
                 });
 
                 betBitEntities.SaveChanges();
@@ -110,6 +113,7 @@ namespace BetBit.Frontend.Controllers
                           .ToArray());
 
             user.UserId = Guid.NewGuid();
+            user.Balance = 0;
 
             myCookie = new HttpCookie("BetBit");
             myCookie.Value = user.UserId.ToString();
@@ -122,7 +126,8 @@ namespace BetBit.Frontend.Controllers
             {
                 UserId = user.UserId,
                 Username = user.Username,
-                Password = user.Password
+                Password = user.Password,
+                Balance = user.Balance
             });
 
             betBitEntities.SaveChanges();

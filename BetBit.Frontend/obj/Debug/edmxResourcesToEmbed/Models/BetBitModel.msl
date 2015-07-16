@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="BetBitModel.Users">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
