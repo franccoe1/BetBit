@@ -50,8 +50,7 @@ namespace BetBit.Frontend.Controllers
                 {
                     UserId = user.UserId,
                     Username = user.Username,
-                    Password = user.Password,
-                    Balance = user.Balance
+                    Password = user.Password
 
                 });
 
@@ -60,6 +59,10 @@ namespace BetBit.Frontend.Controllers
             else
             {
                 user.UserId = new Guid(myCookie.Value);
+
+                BetBitEntities betBitEntities = new BetBitEntities();
+                user.Balance = betBitEntities.Coupon.Where(i => i.UserId == user.UserId).Sum(i => i.CouponAmount);
+
             }
             return user;
         }

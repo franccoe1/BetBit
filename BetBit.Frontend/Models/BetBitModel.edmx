@@ -46,7 +46,6 @@
           <Property Type="Guid" Name="UserId" />
           <Property Type="String" Name="Username" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Password" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Balance" />
         </EntityType>
         <EntityType Name="Coupon">
           <Key>
@@ -68,7 +67,6 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BetBitModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
