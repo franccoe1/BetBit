@@ -135,26 +135,27 @@ namespace BetBit.Frontend.Controllers
             BetBitEntities betBitEntities = new BetBitEntities();
             HttpCookie myCookie = Request.Cookies["BetBit"];
             User user = new User();
+
             //get user
             var User = betBitEntities.Users.FirstOrDefault(i => i.Username.Equals(username) && i.Password.Equals(currentPassword));
+
             //new password
             if (User != null)
             {
                 user.UserId = User.UserId.Value;
                 user.Username = User.Username;
                 user.Password = newPassword;
+                //remove
+                betBitEntities.Users.Remove(User);
+                //add
+                betBitEntities.Users.Add(new Users()
+                {
+                    UserId = user.UserId,
+                    Username = user.Username,
+                    Password = user.Password
+                });
+                betBitEntities.SaveChanges();
             }
-            //remove
-            betBitEntities.Users.Remove(User);
-            //add
-            betBitEntities.Users.Add(new Users()
-            {
-                UserId = user.UserId,
-                Username = user.Username,
-                Password = user.Password
-            });
-            betBitEntities.SaveChanges();
-
 
             return Json(user, JsonRequestBehavior.AllowGet);
         }
