@@ -1,0 +1,7 @@
+E:\DEVELOPMENT\BetBit\BtceApi\bin\Debug\BtceApi.dll
+E:\DEVELOPMENT\BetBit\BtceApi\bin\Debug\BtceApi.pdb
+E:\DEVELOPMENT\BetBit\BtceApi\bin\Debug\Newtonsoft.Json.dll
+E:\DEVELOPMENT\BetBit\BtceApi\bin\Debug\Newtonsoft.Json.xml
+E:\DEVELOPMENT\BetBit\BtceApi\obj\Debug\BtceApi.csprojResolveAssemblyReference.cache
+E:\DEVELOPMENT\BetBit\BtceApi\obj\Debug\BtceApi.dll
+E:\DEVELOPMENT\BetBit\BtceApi\obj\Debug\BtceApi.pdb
