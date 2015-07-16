@@ -1,7 +1,0 @@
-C:\DEVELOPMENT\BetBit\trunk\BtceApi\bin\Debug\BtceApi.dll
-C:\DEVELOPMENT\BetBit\trunk\BtceApi\bin\Debug\BtceApi.pdb
-C:\DEVELOPMENT\BetBit\trunk\BtceApi\bin\Debug\Newtonsoft.Json.dll
-C:\DEVELOPMENT\BetBit\trunk\BtceApi\obj\Debug\BtceApi.csprojResolveAssemblyReference.cache
-C:\DEVELOPMENT\BetBit\trunk\BtceApi\obj\Debug\BtceApi.dll
-C:\DEVELOPMENT\BetBit\trunk\BtceApi\obj\Debug\BtceApi.pdb
-C:\DEVELOPMENT\BetBit\trunk\BtceApi\bin\Debug\Newtonsoft.Json.xml
