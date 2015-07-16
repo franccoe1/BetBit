@@ -11,9 +11,9 @@ namespace BetBit.Frontend.Controllers
 {
     public class AccountController : Controller
     {
-        public User GetUser()
+        public JsonResult GetPublicUser()
         {
-            return GetUser(Request);
+            return Json(GetUser(Request), JsonRequestBehavior.AllowGet);
         }
 
         public User GetUser(HttpRequestBase request)
