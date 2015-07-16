@@ -71,7 +71,7 @@ namespace BetBit.Frontend.Controllers
                         betBitEntities.Coupon.Add(new Coupon()
                         {
                             UserId = User.UserId,
-                            CouponAmount = amount,
+                            CouponAmount = amount * (-1),
                             CouponCode = couponCreate.Coupon,
                             TransId = couponCreate.TransID,
                             CreateDate = DateTime.Now
