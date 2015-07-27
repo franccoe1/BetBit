@@ -24,3 +24,25 @@ BTCE-EUR-MSORUALI-NY6XLV7V-7KBPMITU-21AEYB2Y-NSJ7H2UY - usado
 case sensitive
 ALTER TABLE [Users]
 ALTER COLUMN Password varchar(100) COLLATE SQL_Latin1_General_CP1_CS_AS
+
+68751l5K8B0i7mP
+
+
+
+Version Id					29829
+Varsion						1.0-DELAY
+Application					IcHlVuYfXMovX4rA
+Owner						jotamarm
+Active						Yes
+Delay Data					Yes
+Subscription Required		Yes
+Owner Managed				No
+
+Version Id					29828
+Varsion						1.0
+Application					Bu2h5YYh4eq6mrN7
+Owner						jotamarm
+Active						Yes
+Delay Data					No
+Subscription Required		Yes
+Owner Managed				No
